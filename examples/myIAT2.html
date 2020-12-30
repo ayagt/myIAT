@@ -12,7 +12,7 @@
 </body>
 <script>
 
-var welcome_block = {
+var welcome_block_2 = {
   type: 'html-keyboard-response',
   stimulus: '<p>こんにちは。ジェンダーのIATテストへようこそ。' +
   'このテストでは画像や言葉のカテゴリ分けを行います。' +
@@ -20,11 +20,11 @@ var welcome_block = {
   post_trial_gap: 1500
 };
 
-var category_block = {
+var category_block_2 = {
   type: 'html-keyboard-response',
   stimulus: '<p>パソコンの"E"と"I”キーを使って、 ' + '次の画像や言葉をできる限り早くカテゴリ分けしてください。 ' +
   'カテゴリは以下の４つのグループに分かれます。:<br><br>' +
-  '<strong>健康的</strong>:<br>' + '健康な, 野菜, 少食の, ヘルシー, 低カロリー<br><br>' +
+  '<strong>健康的</strong>:<br>' + '健康な, サラダ, 少食の, ヘルシー, 低カロリー<br><br>' +
    '<strong>不健康</strong>:<br>' + '不健康な, ' +
   'ファストフード, 大食いの, 高カロリー, 体に悪い, <br><br>' +
   '<strong>レディースセット</strong>:<br>' + '<div id=pictures >'  + "<img src='img/ls6.JPG'></img>  " +
@@ -39,7 +39,7 @@ var category_block = {
   post_trial_gap: 1500
 };
 
-var instructions_block = {
+var instructions_block_2 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>以下の時はEを押す:<br><strong>レディースセット</strong></p></div>" +
   "<div style='position: absolute; top: 18%; right: 20%'><p>以下の時はIを押す:<br><strong>レディースセット以外</strong></p></div>" +
@@ -52,7 +52,7 @@ var instructions_block = {
 };
 
 
-var trial_block = {
+var trial_block_2_1 = {
   timeline: [
     {
       type: 'iat-image',
@@ -68,7 +68,7 @@ var trial_block = {
       left_category_label: ['レディースセット'],
       right_category_label: ['レディースセット以外'],
       response_ends_trial: true,
-      data: { iat_type: 'practice' }
+      data: { iat_type: 'practice2' }
     }
   ],
   timeline_variables: [
@@ -89,7 +89,7 @@ var trial_block = {
   repetitions: 2
 };
 
-var instructions_block2 = {
+var instructions_block_2_2 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br><strong>健康的</strong></div>" +
   "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br><strong>不健康</strong></div>" +
@@ -102,7 +102,7 @@ var instructions_block2 = {
   "準備ができたらスペースキーを押してください。</div>",
 };
 
-var trial_block2 = {
+var trial_block_2_2 = {
   timeline: [
     {
       type: 'iat-html',
@@ -123,7 +123,7 @@ var trial_block2 = {
   ],
   timeline_variables: [
     {stimulus: "健康な", stim_key_association: "left"},
-    {stimulus: "野菜", stim_key_association: "left"},
+    {stimulus: "サラダ", stim_key_association: "left"},
     {stimulus: "少食の", stim_key_association: "left"},
     {stimulus: "ヘルシー", stim_key_association: "left"},
     {stimulus: "低カロリー", stim_key_association: "left"},
@@ -137,7 +137,7 @@ var trial_block2 = {
   repetitions: 2
 };
 
-var instructions_block3 = {
+var instructions_block_2_3 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br> " +
   "<strong>女性</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
@@ -150,7 +150,7 @@ var instructions_block3 = {
   "準備ができたらスペースキーを押してください。</div>",
 };
 
-var trial_block3 = {
+var trial_block_2_3 = {
   timeline: [
     {
       type: jsPsych.timelineVariable('type'),
@@ -183,7 +183,7 @@ var trial_block3 = {
     {type: 'iat-image', stimulus: "img/nonls5.jpg", stim_key_association: "right"},
     {type: 'iat-image', stimulus: "img/nonls6.jpg", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
-    {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "サラダ", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
@@ -198,7 +198,7 @@ var trial_block3 = {
   repetitions: 1
 };
 
-var instructions_block4 = {
+var instructions_block_2_4 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br> " +
   "<strong>女性</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
@@ -211,7 +211,7 @@ var instructions_block4 = {
   "準備ができたらスペースキーを押してください。</div>",
 };
 
-var trial_block4 = {
+var trial_block_2_4 = {
   timeline: [
       {
         type: jsPsych.timelineVariable('type'),
@@ -245,7 +245,7 @@ var trial_block4 = {
       {type: 'iat-image', stimulus: "img/nonls5.jpg", stim_key_association: "right"},
       {type: 'iat-image', stimulus: "img/nonls6.jpg", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
-      {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "サラダ", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
@@ -259,7 +259,7 @@ var trial_block4 = {
     repetitions: 2
   };
 
-  var instructions_block5 = {
+  var instructions_block_2_5 = {
     type: 'html-keyboard-response',
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>レディースセット以外</strong></div>" +
     "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>レディースセット</strong></div>" +
@@ -270,7 +270,7 @@ var trial_block4 = {
     "準備ができたらスペースキーを押してください。</div>"
   };
 
-  var trial_block5 = { 
+  var trial_block_2_5 = { 
     timeline: [
       {
         type: 'iat-image',
@@ -308,7 +308,7 @@ var trial_block4 = {
     repetitions: 2
   };
 
-  var instructions_block6 = {
+  var instructions_block_2_6 = {
     type: 'html-keyboard-response',
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>健康的</strong><br>" + "or<br>" +
     "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>不健康</strong><br>" + "or<br>" +
@@ -320,7 +320,7 @@ var trial_block4 = {
     "準備ができたらスペースキーを押してください。</div>"
   };
 
-  var trial_block6 = {
+  var trial_block_2_6 = {
     timeline: [
     {
       type: jsPsych.timelineVariable('type'),
@@ -353,7 +353,7 @@ var trial_block4 = {
       {type: 'iat-image', stimulus: "img/nonls5.jpg", stim_key_association: "left"},
       {type: 'iat-image', stimulus: "img/nonls6.jpg", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
-      {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "サラダ", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
@@ -367,7 +367,7 @@ var trial_block4 = {
     repetitions: 1
   };
 
-  var instructions_block7 = {
+  var instructions_block_2_7 = {
     type: 'html-keyboard-response',
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>女性</strong><br>" + "or<br>" +
     "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" +
@@ -381,7 +381,7 @@ var trial_block4 = {
     "準備ができたらスペースキーを押してください。</div>"
   };
 
-var trial_block7 = {
+var trial_block_2_7 = {
   timeline: [
   {
     type: jsPsych.timelineVariable('type'),
@@ -415,7 +415,7 @@ var trial_block7 = {
     {type: 'iat-image', stimulus: "img/nonls5.jpg", stim_key_association: "left"},
     {type: 'iat-image', stimulus: "img/nonls6.jpg", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
-    {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "サラダ", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
@@ -429,7 +429,7 @@ var trial_block7 = {
   repetitions: 2
 };
 
-  var debrief_block = {
+  var debrief_block_2 = {
     type: "html-keyboard-response",
     stimulus: function() {
       // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
@@ -452,7 +452,7 @@ var trial_block7 = {
     }
   };
 
-  var timeline = [];
+  var timeline_2 = [];
   timeline.push(welcome_block);
   timeline.push(category_block);
   timeline.push(instructions_block);
