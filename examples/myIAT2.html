@@ -1,0 +1,481 @@
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>IAT Example</title>
+  <script src="../jspsych.js"></script>
+  <script src="../plugins/jspsych-iat-image.js"></script>
+  <script src="../plugins/jspsych-iat-html.js"></script>
+  <script src="../plugins/jspsych-html-keyboard-response.js"></script>
+  <link href="../css/jspsych.css" rel="stylesheet">
+</head>
+<body>
+</body>
+<script>
+
+var welcome_block = {
+  type: 'html-keyboard-response',
+  stimulus: '<p>こんにちは。ジェンダーのIATテストへようこそ。' +
+  'このテストでは画像や言葉のカテゴリ分けを行います。' +
+  '</p><p>テストを始めるにはスペースキーを押してください。</p>',
+  post_trial_gap: 1500
+};
+
+var category_block = {
+  type: 'html-keyboard-response',
+  stimulus: '<p>パソコンの"E"と"I”キーを使って、 ' + '次の画像や言葉をできる限り早くカテゴリ分けしてください。 ' +
+  'カテゴリは以下の４つのグループに分かれます。:<br><br>' +
+  '<strong>健康的</strong>:<br>' + '健康な, 野菜, 少食の, ヘルシー, 低カロリー<br><br>,' +
+   '<strong>不健康</strong>:<br>' + '不健康な, ' +
+  'ファストフード, 大食いの, 高カロリー, 体に悪い, <br><br>' +
+  '<strong>レディースセット</strong>:<br>' + '<div id=pictures >'  + "<img src='img/ls6.JPG'></img>  " +
+  "<img src='img/ls1.jpg' ></img>  " + "<img src='img/ls2.jpg' ></img>  " +
+  "<img src='img/ls3.jpg '></img>  " + "<img src='img/ls4.jpg'></img>  " +
+  "<img src='img/ls5.jpg '></img><br><br>" + '<strong>レディースセット以外</strong>:<br>' +
+  "<img src='img/nonls1.jpg '></img>  " + "<img src='img/nonls2.jpg'></img>  " +
+  "<img src='img/nonls3.jpg'></img>  " + "<img src='img/nonls4.jpg'></img>  " +
+  "<img src='img/nonls5.jpg'></img>  " + "<img src='img/nonls6.jpg'></img><br><br>" +
+ "</div>" +
+  "Press any key to continue.</p>",
+  post_trial_gap: 1500
+};
+
+var instructions_block = {
+  type: 'html-keyboard-response',
+  stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>以下の時はEを押す:<br><strong>レディースセット</strong></p></div>" +
+  "<div style='position: absolute; top: 18%; right: 20%'><p>以下の時はIを押す:<br><strong>レディースセット以外</strong></p></div>" +
+  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> <strong>E</strong> キーの上に左の人差し指を置き、 「レディースセット」に当てはまる画像が出てきたら押してください。 " +
+  "<strong>I</strong> キーの上には右の人差し指を置き、「レディースセット以外」に当てはまる画像が出てきたら押してください。" +
+  "画像は一つずつ表示されます。<br><br>" + "もし " +
+  "間違えてしまったら, 赤いXが表示されます。  " +
+  "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+  "準備ができたらスペースキーを押してください。</div>",
+};
+
+
+var trial_block = {
+  timeline: [
+    {
+      type: 'iat-image',
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+      html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+      bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+      force_correct_key_press: true,
+      display_feedback: true,
+      trial_duration: 3000, //Only if display_feedback is false
+      left_category_key: 'E',
+      right_category_key: 'I',
+      left_category_label: ['レディースセット'],
+      right_category_label: ['レディースセット以外'],
+      response_ends_trial: true,
+      data: { iat_type: 'practice' }
+    }
+  ],
+  timeline_variables: [
+    {stimulus: "img/ls1.jpg", stim_key_association: "left"},
+    {stimulus: "img/ls2.jpg", stim_key_association: "left"},
+    {stimulus: "img/ls3.jpg", stim_key_association: "left"},
+    {stimulus: "img/ls4.jpg", stim_key_association: "left"},
+    {stimulus: "img/ls5.jpg", stim_key_association: "left"},
+    {stimulus: "img/ls6.jpg", stim_key_association: "left"},
+    {stimulus: "img/nonls1.jpg", stim_key_association: "right"},
+    {stimulus: "img/nonls2.jpg", stim_key_association: "right"},
+    {stimulus: "img/nonls3.jpg", stim_key_association: "right"},
+    {stimulus: "img/nonls4.jpg", stim_key_association: "right"},
+    {stimulus: "img/nonls5.jpg", stim_key_association: "right"},
+    {stimulus: "img/nonls6.jpg", stim_key_association: "right"}
+  ],
+  randomize_order: true,
+  repetitions: 2
+};
+
+var instructions_block2 = {
+  type: 'html-keyboard-response',
+  stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br><strong>健康的</strong></div>" +
+  "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br><strong>不健康</strong></div>" +
+  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> <strong>E</strong> キーの上に左の人差し指を置き、 「健康」に当てはまる言葉が出てきたら押してください. " +
+  "" +
+"<strong>I</strong> キーの上に右の人差し指を置き" +
+  "「不健康」に当てはまる言葉が出てきたら押してください. 言葉は一つずつ表示されます.<br><br>" + "もし " +
+  "間違えてしまったら, 赤いXが表示されます。 " +
+  "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+  "準備ができたらスペースキーを押してください。</div>",
+};
+
+var trial_block2 = {
+  timeline: [
+    {
+      type: 'iat-html',
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+      html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+      bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+      force_correct_key_press: true,
+      display_feedback: true,
+      trial_duration: 3000, //Only if display_feedback is false
+      left_category_key: 'E',
+      right_category_key: 'I',
+      left_category_label: ['健康'],
+      right_category_label: ['不健康'],
+      response_ends_trial: true,
+      data: { iat_type: 'practice' }
+    }
+  ],
+  timeline_variables: [
+    {stimulus: "健康な", stim_key_association: "left"},
+    {stimulus: "野菜", stim_key_association: "left"},
+    {stimulus: "少食の", stim_key_association: "left"},
+    {stimulus: "ヘルシー", stim_key_association: "left"},
+    {stimulus: "低カロリー", stim_key_association: "left"},
+    {stimulus: "不健康な", stim_key_association: "right"},
+    {stimulus: "ファストフード", stim_key_association: "right"},
+    {stimulus: "大食いの", stim_key_association: "right"},
+    {stimulus: "高カロリー", stim_key_association: "right"},
+    {stimulus: "体に悪い", stim_key_association: "right"},
+  ],
+  randomize_order: true,
+  repetitions: 2
+};
+
+var instructions_block3 = {
+  type: 'html-keyboard-response',
+  stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br> " +
+  "<strong>女性</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+  "下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" + "<strong>レディースセット以外</strong></div>" +
+  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> 「健康的」または「レディースセット」には<strong>E</strong> キーを使ってください。 " +
+   + "「不健康」または「レディースセット以外」には<strong>I</strong> キーを使ってください。<br>" +
+  "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" + "もし " +
+  "間違えてしまったら, 赤いXが表示されます。" +
+  "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+  "準備ができたらスペースキーを押してください。</div>",
+};
+
+var trial_block3 = {
+  timeline: [
+    {
+      type: jsPsych.timelineVariable('type'),
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+      html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+      bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+      force_correct_key_press: true,
+      display_feedback: true,
+      trial_duration: 3000, //Only if display_feedback is false
+      left_category_key: 'E',
+      right_category_key: 'I',
+      left_category_label: ['レディースセット', '健康的'],
+      right_category_label: ['レディースセット以外', '不健康'],
+      response_ends_trial: true,
+      data: { iat_type: 'practice' }
+    }
+  ],
+  timeline_variables: [
+    {type: 'iat-image', stimulus: "img/age/of1.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/of2.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/of3.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/om1.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/om2.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/om3.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/yf1.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/yf4.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/yf5.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/ym2.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/ym3.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/ym5.jpg", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "不健康な", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "ファストフード", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "大食いの", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "高カロリー", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "体に悪い", stim_key_association: "right"},
+
+  ],
+  randomize_order: true,
+  repetitions: 1
+};
+
+var instructions_block4 = {
+  type: 'html-keyboard-response',
+  stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br> " +
+  "<strong>女性</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+  "以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" + "<strong>レディースセット以外</strong></div>" +
+  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これは前回のパートと同様のテストです。<br>" + "「健康的」または「レディースセット」の時は <strong>E</strong> キーを押してください。 " +
+  "<br>" + "「不健康」または「レディースセット」以外の時は <strong>I</strong> キーを押してください。<br>" +
+  "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" + "もし " +
+  "間違えてしまったら, 赤いXが表示されます。 " +
+  "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+  "準備ができたらスペースキーを押してください。</div>",
+};
+
+var trial_block4 = {
+  timeline: [
+      {
+        type: jsPsych.timelineVariable('type'),
+        is_html: jsPsych.timelineVariable('is_html'),
+        stimulus: jsPsych.timelineVariable('stimulus'),
+        stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+        html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+        bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+        force_correct_key_press: true,
+        display_feedback: true,
+        trial_duration: 3000, //Only if display_feedback is false
+        left_category_key: 'E',
+        right_category_key: 'I',
+        left_category_label: ['健康的', 'レディースセット'],
+        right_category_label: ['不健康', 'レディースセット以外'],
+        response_ends_trial: true,
+        data: { iat_type: 'healthy-ladies set' }
+      }
+    ],
+    timeline_variables: [
+      {type: 'iat-image', stimulus: "img/age/of1.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/of2.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/of3.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/om1.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/om2.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/om3.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/yf1.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/yf4.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/yf5.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/ym2.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/ym3.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/ym5.jpg", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "不健康な", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "ファストフード", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "大食いの", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "高カロリー", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "体に悪い", stim_key_association: "right"},
+    ],
+    randomize_order: true,
+    repetitions: 2
+  };
+
+  var instructions_block5 = {
+    type: 'html-keyboard-response',
+    stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>レディースセット以外</strong></div>" +
+    "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>レディースセット</strong></div>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Watch out, the labels have changed positions!<br>" +
+    "「レディースセット以外」の時は <strong>E</strong> キーを押してください。<br>" + "「レディースセット」の時は <strong>I</strong> キーを押してください。<br><br>" +
+    "もし間違えてしまったら, 赤いXが表示されます。 " +
+    "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+    "準備ができたらスペースキーを押してください。</div>"
+  };
+
+  var trial_block5 = { 
+    timeline: [
+      {
+        type: 'iat-image',
+        is_html: false,
+        stimulus: jsPsych.timelineVariable('stimulus'),
+        stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+        html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+        bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+        force_correct_key_press: true,
+        display_feedback: true,
+        trial_duration: 3000, //Only if display_feedback is false
+        left_category_key: 'E',
+        right_category_key: 'I',
+        left_category_label: ['レディースセット以外'],
+        right_category_label: ['レディースセット'],
+        response_ends_trial: true,
+        data: { iat_type: 'practice' }
+      }
+    ],
+    timeline_variables: [
+      {type: 'iat-image', stimulus: "img/age/of1.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/of2.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/of3.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om1.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om2.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om3.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/yf1.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/yf4.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/yf5.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym2.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym3.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym5.jpg", stim_key_association: "left"}
+    ],
+    randomize_order: true,
+    repetitions: 2
+  };
+
+  var instructions_block6 = {
+    type: 'html-keyboard-response',
+    stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>健康的</strong><br>" + "or<br>" +
+    "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>不健康</strong><br>" + "or<br>" +
+    "<strong>レディースセット</strong></div>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>女性またはレディースセット以外の時は <strong>E</strong> キーを押してください。<br>" +
+    "男性またはレディースセットの時は <strong>I</strong> キーを押してください。<br><br>" +
+    "もし間違えてしまったら, 赤いXが表示されます。 " +
+    "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+    "準備ができたらスペースキーを押してください。</div>"
+  };
+
+  var trial_block6 = {
+    timeline: [
+    {
+      type: jsPsych.timelineVariable('type'),
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+      html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+      bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+      force_correct_key_press: true,
+      display_feedback: true,
+      trial_duration: 3000, //Only if display_feedback is false
+      left_category_key: 'E',
+      right_category_key: 'I',
+      left_category_label: ['健康的', 'レディースセット以外'],
+      right_category_label: ['不健康', 'レディースセット'],
+      response_ends_trial: true,
+      data: {iat_type: 'practice'}
+    }
+    ],
+    timeline_variables: [
+      {type: 'iat-image', stimulus: "img/age/of1.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/of2.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/of3.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om1.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om2.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/om3.jpg", stim_key_association: "right"},
+      {type: 'iat-image', stimulus: "img/age/yf1.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/yf4.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/yf5.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym2.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym3.jpg", stim_key_association: "left"},
+      {type: 'iat-image', stimulus: "img/age/ym5.jpg", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
+      {type: 'iat-html', stimulus: "不健康な", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "ファストフード", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "大食いの", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "高カロリー", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "体に悪い", stim_key_association: "right"},
+    ],
+    randomize_order: true,
+    repetitions: 1
+  };
+
+  var instructions_block7 = {
+    type: 'html-keyboard-response',
+    stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>女性</strong><br>" + "or<br>" +
+    "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" +
+    "<strong>レディースセット</strong></div>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これは前回のパートと同様のテストです。<br>" +
+    "Use <strong>E</strong> for 健康的 and for レディースセット以外 People<br>" +
+    "Use <strong>I</strong> for 不健康な and for レディースセット<br>" +
+    "どの画像や言葉もいずれか一つのカテゴリにしか分類されません.<br><br>" +
+    "もし間違えてしまったら, 赤いXが表示されます。 " +
+    "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
+    "準備ができたらスペースキーを押してください。</div>"
+  };
+
+var trial_block7 = {
+  timeline: [
+  {
+    type: jsPsych.timelineVariable('type'),
+    is_html: jsPsych.timelineVariable('is_html'),
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+    html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+    bottom_instructions: '<p>もし間違えてしまったら, 赤いXが表示されます。 進むにはもう片方のキーを押してください。</p>',
+    force_correct_key_press: true,
+    display_feedback: true,
+    trial_duration: 3000, //Only if display_feedback is false
+    left_category_key: 'E',
+    right_category_key: 'I',
+    left_category_label: ['健康的', 'レディースセット以外'],
+    right_category_label: ['不健康', 'レディースセット'],
+    response_ends_trial: true,
+    data: {iat_type: 'women-non ladies set'}
+  }
+  ],
+  timeline_variables: [
+    {type: 'iat-image', stimulus: "img/age/of1.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/of2.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/of3.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/om1.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/om2.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/om3.jpg", stim_key_association: "right"},
+    {type: 'iat-image', stimulus: "img/age/yf1.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/yf4.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/yf5.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/ym2.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/ym3.jpg", stim_key_association: "left"},
+    {type: 'iat-image', stimulus: "img/age/ym5.jpg", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "健康な", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "野菜", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "少食の", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "ヘルシー", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "低カロリー", stim_key_association: "left"},
+    {type: 'iat-html', stimulus: "不健康な", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "ファストフード", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "大食いの", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "高カロリー", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "体に悪い", stim_key_association: "right"},
+  ],
+  randomize_order: true,
+  repetitions: 2
+};
+
+  var debrief_block = {
+    type: "html-keyboard-response",
+    stimulus: function() {
+      // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
+      // first find mean RT
+      var bad_old = jsPsych.data.get().filter({iat_type: 'bad-old'}).filterCustom(function(x) { return x.rt < 10000 });
+      var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
+      var bad_young = jsPsych.data.get().filter({iat_type: 'bad-young'}).filterCustom(function(x) { return x.rt < 10000 });
+      var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
+
+      // get overall sd
+      var sd = bad_old.join(bad_young).filter({correct: true}).select('rt').sd();
+
+      var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
+
+      return "<p>これで終了です。 ご協力ありがとうございました。以下があなたの結果です。</p>"+
+        "<p>女性/レディースセット以外 and 健康的/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
+        "<p>女性/レディースセット and 不健康/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
+        "<p>あなたのDスコア（このテストの結果による指標）は <strong>"+d.toFixed(2)+"</strong></p>"+
+        "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。</p>"
+    }
+  };
+
+  var timeline = [];
+  timeline.push(welcome_block);
+  timeline.push(category_block);
+  timeline.push(instructions_block);
+  timeline.push(trial_block);
+  timeline.push(instructions_block2);
+  timeline.push(trial_block2);
+  timeline.push(instructions_block3);
+  timeline.push(trial_block3);
+  timeline.push(instructions_block4);
+  timeline.push(trial_block4);
+  timeline.push(instructions_block5);
+  timeline.push(trial_block5);
+  timeline.push(instructions_block6);
+  timeline.push(trial_block6);
+  timeline.push(instructions_block7);
+  timeline.push(trial_block7);
+  timeline.push(debrief_block);
+
+  jsPsych.init({
+    timeline: timeline,
+    on_finish: function() {
+      jsPsych.data.displayData();
+    }
+  });
+  </script>
+  </html>
