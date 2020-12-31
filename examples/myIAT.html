@@ -22,14 +22,16 @@
 
 var survey_block ={
     type: "survey-html-form",
-    preamble: '<p> How are you feeling <b>right now?</b> </p>',
-    html: '<p> I am  <input name="first" type="text" /> years old, <input type="radio" '
+    preamble: '<p> 以下の情報をお願いします <b></b> </p>',
+    html: '<p> 年齢：  <input name="first" type="text" /> 歳 <br><br>'+
+        '性別：　<input type="radio" input type="radio" name="q1" value="男性"> 男性　<input type="radio" name="q1" value="女性"> 女性　<input type="radio" name="q1" value="その他"> その他 <br><br>' +
+        'IATテストについて　：　<input type="radio" input type="radio" name="q1" value="初めて受ける">　初めて受ける　<input type="radio" name="q1" value="過去に受けたことがある"> 過去に受けたことがある'
 };
 
 var welcome_block = {
   type: 'html-keyboard-response',
   stimulus: 'こんにちは。星野研究室マーケ班の後藤彩乃と申します。<p>'+
-  '今回は卒業論文につき、このテストを受けて下さりありがとうございます。今回はIATテストというテストを2回受けていただきます。IATテストでは画像や言葉のカテゴリ分けを行うことで、あなたの潜在的意識を測ります。' +
+  '今回はIATテストというテストを2回受けていただきます。所要時間は15分です。<br> IATテストでは画像や言葉のカテゴリ分けを行うことで、あなたのジェンダーに対する潜在的意識を測ります。' +
   '</p><p>進むにはスペースキーを押してください。</p>',
   post_trial_gap: 1500
 };
@@ -40,7 +42,7 @@ var category_block = {
   'カテゴリは以下の４つのグループに分かれます。:<br><br>' +
   '<strong>女性</strong>:<br>' + 'はなこ, あやか, まりこ, りか, みさき, ' +
   'ゆうな, しおり, りさ<br><br>' + '<strong>男性</strong>:<br>' + 'ゆうすけ, ' +
-  'おさむ, まこと, ひろき, ゆうや, かいと, さぶろう, まさし<br><br>' +
+  'おさむ, なおき, ひろき, ゆうや, かいと, さぶろう, まさし<br><br>' +
   '<strong>レディースセット</strong>:<br>' + '<div id=pictures >'  + "<img src='img/ls6.JPG'></img>  " +
   "<img src='img/ls1.jpg' ></img>  " + "<img src='img/ls2.jpg' ></img>  " +
   "<img src='img/ls3.jpg '></img>  " + "<img src='img/ls4.jpg'></img>  " +
@@ -49,7 +51,7 @@ var category_block = {
   "<img src='img/nonls3.jpg'></img>  " + "<img src='img/nonls4.jpg'></img>  " +
   "<img src='img/nonls5.jpg'></img>  " + "<img src='img/nonls6.jpg'></img><br><br>" +
  "</div>" +
-  "Press any key to continue.</p>",
+  "進むにはスペースキーを押してください.</p>",
   post_trial_gap: 1500
 };
 
@@ -62,7 +64,7 @@ var instructions_block = {
   "画像は一つずつ表示されます。<br><br>" + "もし " +
   "間違えてしまったら, 赤いXが表示されます。  " +
   "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
-  "準備ができたらスペースキーを押してください。</div>",
+  "準備ができたらスペースキーを押してください。テストが始まります。</div>",
 };
 
 var trial_block = {
@@ -145,7 +147,7 @@ var trial_block2 = {
     {stimulus: "しおり", stim_key_association: "left"},
     {stimulus: "ゆうすけ", stim_key_association: "right"},
     {stimulus: "おさむ", stim_key_association: "right"},
-    {stimulus: "まこと", stim_key_association: "right"},
+    {stimulus: "なおき", stim_key_association: "right"},
     {stimulus: "ひろき", stim_key_association: "right"},
     {stimulus: "ゆうや", stim_key_association: "right"},
     {stimulus: "かいと", stim_key_association: "right"},
@@ -211,7 +213,7 @@ var trial_block3 = {
     {type: 'iat-html', stimulus: "ゆうな", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "ゆうすけ", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "おさむ", stim_key_association: "right"},
-    {type: 'iat-html', stimulus: "まこと", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "なおき", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "ひろき", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "ゆうや", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "かいと", stim_key_association: "right"},
@@ -278,7 +280,7 @@ var trial_block4 = {
       {type: 'iat-html', stimulus: "ゆうな", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "ゆうすけ", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "おさむ", stim_key_association: "right"},
-      {type: 'iat-html', stimulus: "まこと", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "なおき", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "ひろき", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "ゆうや", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "かいと", stim_key_association: "right"},
@@ -293,7 +295,7 @@ var instructions_block5 = {
     type: 'html-keyboard-response',
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>レディースセット以外</strong></div>" +
     "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>レディースセット</strong></div>" +
-    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Watch out, the labels have changed positions!<br>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>カテゴリの位置が変わりました！<br>" +
     "「レディースセット以外」の時は <strong>E</strong> キーを押してください。<br>" + "「レディースセット」の時は <strong>I</strong> キーを押してください。<br><br>" +
     "もし間違えてしまったら, 赤いXが表示されます。 " +
     "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
@@ -390,10 +392,9 @@ var trial_block6 = {
       {type: 'iat-html', stimulus: "しおり", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "りさ", stim_key_association: "left"},
       {type: 'iat-html', stimulus: "ゆうな", stim_key_association: "left"},
-      {type: 'iat-html', stimulus: "りさ", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "ゆうすけ", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "おさむ", stim_key_association: "right"},
-      {type: 'iat-html', stimulus: "まこと", stim_key_association: "right"},
+      {type: 'iat-html', stimulus: "なおき", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "ひろき", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "ゆうや", stim_key_association: "right"},
       {type: 'iat-html', stimulus: "かいと", stim_key_association: "right"},
@@ -413,7 +414,7 @@ var instructions_block7 = {
     "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これは前回のパートと同様のテストです。<br>" +
     "Use <strong>E</strong> for 女性 and for レディースセット以外 People<br>" +
     "Use <strong>I</strong> for 男性 and for レディースセット<br>" +
-    "どの画像や言葉もいずれか一つのカテゴリにしか分類されません.<br><br>" +
+    "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" +
     "もし間違えてしまったら, 赤いXが表示されます。 " +
     "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
     "準備ができたらスペースキーを押してください。</div>"
@@ -461,7 +462,7 @@ var trial_block7 = {
     {type: 'iat-html', stimulus: "りさ", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "ゆうな", stim_key_association: "left"},
     {type: 'iat-html', stimulus: "ゆうすけ", stim_key_association: "right"},
-    {type: 'iat-html', stimulus: "まこと", stim_key_association: "right"},
+    {type: 'iat-html', stimulus: "なおき", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "ゆうや", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "ひろき", stim_key_association: "right"},
     {type: 'iat-html', stimulus: "まさし", stim_key_association: "right"},
@@ -478,9 +479,9 @@ var debrief_block = {
     stimulus: function() {
       // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
       // first find mean RT
-      var bad_old = jsPsych.data.get().filter({iat_type: 'bad-old'}).filterCustom(function(x) { return x.rt < 10000 });
+      var bad_old = jsPsych.data.get().filter({iat_type: 'women-ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
-      var bad_young = jsPsych.data.get().filter({iat_type: 'bad-young'}).filterCustom(function(x) { return x.rt < 10000 });
+      var bad_young = jsPsych.data.get().filter({iat_type: 'women-non ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
 
       // get overall sd
@@ -488,18 +489,18 @@ var debrief_block = {
 
       var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
 
-      return "<p>これで終了です。 ご協力ありがとうございました。以下があなたの結果です。</p>"+
-        "<p>女性/レディースセット以外 and 男性/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
-        "<p>女性/レディースセット and 男性/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
-        "<p>あなたのDスコア（このテストの結果による指標）は <strong>"+d.toFixed(2)+"</strong></p>"+
+      return "<p>これでパート１終了です。 ご協力ありがとうございました。パート１のあなたの結果は以下の通りです。</p>"+
+        "<p>女性/レディースセット以外 と 男性/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
+        "<p>女性/レディースセット と 男性/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
+        "<p>これよりあなたのDスコア（このテストの結果で表示される指標）は <strong>"+d.toFixed(2)+"</strong></p>です。"+
         "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。</p>"
     }
   };
 
   var welcome_block_2 = {
   type: 'html-keyboard-response',
-  stimulus: '<p>こんにちは。ジェンダーのIATテストへようこそ。' +
-  'このテストでは画像や言葉のカテゴリ分けを行います。' +
+  stimulus: '<p>続いて、パート２のテストに移ります。' +
+  'このテストもパート１同様に、画像や言葉のカテゴリ分けを行います。' +
   '</p><p>テストを始めるにはスペースキーを押してください。</p>',
   post_trial_gap: 1500
 };
@@ -510,7 +511,7 @@ var category_block_2 = {
   'カテゴリは以下の４つのグループに分かれます。:<br><br>' +
   '<strong>健康的</strong>:<br>' + '健康な, サラダ, 少食の, ヘルシー, 低カロリー<br><br>' +
    '<strong>不健康</strong>:<br>' + '不健康な, ' +
-  'ファストフード, 大食いの, 高カロリー, 体に悪い, <br><br>' +
+  'ファストフード, 大食いの, 高カロリー, 体に悪い <br><br>' +
   '<strong>レディースセット</strong>:<br>' + '<div id=pictures >'  + "<img src='img/ls6.JPG'></img>  " +
   "<img src='img/ls1.jpg' ></img>  " + "<img src='img/ls2.jpg' ></img>  " +
   "<img src='img/ls3.jpg '></img>  " + "<img src='img/ls4.jpg'></img>  " +
@@ -519,7 +520,7 @@ var category_block_2 = {
   "<img src='img/nonls3.jpg'></img>  " + "<img src='img/nonls4.jpg'></img>  " +
   "<img src='img/nonls5.jpg'></img>  " + "<img src='img/nonls6.jpg'></img><br><br>" +
  "</div>" +
-  "Press any key to continue.</p>",
+  "進むにはスペースキーを押してください</p>",
   post_trial_gap: 1500
 };
 
@@ -532,7 +533,7 @@ var instructions_block_2 = {
   "画像は一つずつ表示されます。<br><br>" + "もし " +
   "間違えてしまったら, 赤いXが表示されます。  " +
   "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
-  "準備ができたらスペースキーを押してください。</div>",
+  "準備ができたらスペースキーを押してください。テストが始まります。</div>",
 };
 
 
@@ -577,10 +578,10 @@ var instructions_block_2_2 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br><strong>健康的</strong></div>" +
   "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br><strong>不健康</strong></div>" +
-  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> <strong>E</strong> キーの上に左の人差し指を置き、 「健康」に当てはまる言葉が出てきたら押してください. " +
+  "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> <strong>E</strong> キーの上に左の人差し指を置き、 「健康」に当てはまる言葉が出てきたら押してください。 " +
   "" +
 "<strong>I</strong> キーの上に右の人差し指を置き" +
-  "「不健康」に当てはまる言葉が出てきたら押してください. 言葉は一つずつ表示されます.<br><br>" + "もし " +
+  "「不健康」に当てはまる言葉が出てきたら押してください。 言葉は一つずつ表示されます。<br><br>" + "もし " +
   "間違えてしまったら, 赤いXが表示されます。 " +
   "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
   "準備ができたらスペースキーを押してください。</div>",
@@ -624,8 +625,8 @@ var trial_block_2_2 = {
 var instructions_block_2_3 = {
   type: 'html-keyboard-response',
   stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br> " +
-  "<strong>女性</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
-  "下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" + "<strong>レディースセット以外</strong></div>" +
+  "<strong>健康的</strong><br>" + "or<br>" + "<strong>レディースセット</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+  "下の時はIを押す:<br>" + "<strong>不健康</strong><br>" + "or<br>" + "<strong>レディースセット以外</strong></div>" +
   "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'> 「健康的」または「レディースセット」には<strong>E</strong> キーを使ってください。 " +
    + "「不健康」または「レディースセット以外」には<strong>I</strong> キーを使ってください。<br>" +
   "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" + "もし " +
@@ -747,7 +748,7 @@ var trial_block_2_4 = {
     type: 'html-keyboard-response',
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>レディースセット以外</strong></div>" +
     "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>レディースセット</strong></div>" +
-    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>Watch out, the labels have changed positions!<br>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>カテゴリの位置が変わりました！<br>" +
     "「レディースセット以外」の時は <strong>E</strong> キーを押してください。<br>" + "「レディースセット」の時は <strong>I</strong> キーを押してください。<br><br>" +
     "もし間違えてしまったら, 赤いXが表示されます。 " +
     "できる限り正確に、かつ素早くカテゴリ分けをおこなってください。<br><br> " +
@@ -882,7 +883,7 @@ var trial_block_2_7 = {
     left_category_label: ['健康的', 'レディースセット以外'],
     right_category_label: ['不健康', 'レディースセット'],
     response_ends_trial: true,
-    data: {iat_type: 'women-non ladies set'}
+    data: {iat_type: 'unhealthy-non ladies set'}
   }
   ],
   timeline_variables: [
@@ -913,26 +914,26 @@ var trial_block_2_7 = {
   repetitions: 2
 };
 
-  var debrief_block_2 = {
+ var debrief_block_2 = {
     type: "html-keyboard-response",
     stimulus: function() {
       // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
       // first find mean RT
-      var bad_old = jsPsych.data.get().filter({iat_type: 'bad-old'}).filterCustom(function(x) { return x.rt < 10000 });
+      var bad_old = jsPsych.data.get().filter({iat_type: 'healthy-ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
-      var bad_young = jsPsych.data.get().filter({iat_type: 'bad-young'}).filterCustom(function(x) { return x.rt < 10000 });
+      var bad_young = jsPsych.data.get().filter({iat_type: 'unhealthy-non ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
-
+ 
       // get overall sd
       var sd = bad_old.join(bad_young).filter({correct: true}).select('rt').sd();
 
       var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
 
-      return "<p>これでパート2のテストが終了です。 パート１に引き続きご協力ありがとうございました。パート２のあなたの結果は以下の通りです。</p>"+
-        "<p>女性/レディースセット以外 and 健康的/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
-        "<p>女性/レディースセット and 不健康/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
-        "<p>あなたのDスコア（このテストの結果による指標）は <strong>"+d.toFixed(2)+"</strong></p>"+
-        "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。</p>"
+      return "<p>これでパート2のテストが終了です。 お疲れ様でした。<br> <br> パート２のあなたの結果は以下の通りです。</p>"+
+        "<p>健康的/レディースセット以外 と 不健康/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
+        "<p>健康的/レディースセット と 不健康/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
+        "<p>これよりあなたのDスコア（このテストの結果で表示される指標）は <strong>"+d.toFixed(2)+"</strong></p>です。"+
+        "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。<br><br>ご協力誠にありがとうございました。</p>"
     }
   };
   var timeline = [];
@@ -972,7 +973,7 @@ var trial_block_2_7 = {
   timeline.push(trial_block_2_6);
   timeline.push(instructions_block_2_7);
   timeline.push(trial_block_2_7);
-  timeline.push(debrief_block);
+  timeline.push(debrief_block_2);
 
   var timeline_2 = [];
 
