@@ -9,6 +9,7 @@
         <script src="jspsych.js"></script>
         <script src="plugins/jspsych-iat-image.js"></script>
         <script src="plugins/jspsych-iat-html.js"></script>
+        <script src="plugins/jspsych-survey-html-form.js"></script>
         <script src="plugins/jspsych-html-keyboard-response.js"></script>
         <link href="css/jspsych.css" rel="stylesheet">
 
@@ -24,8 +25,8 @@ var survey_block ={
     type: "survey-html-form",
     preamble: '<p> 以下の情報をお願いします <b></b> </p>',
     html: '<p> 年齢：  <input name="first" type="text" /> 歳 <br><br>'+
-        '性別：　<input type="radio" input type="radio" name="q1" value="男性"> 男性　<input type="radio" name="q1" value="女性"> 女性　<input type="radio" name="q1" value="その他"> その他 <br><br>' +
-        'IATテストについて　：　<input type="radio" input type="radio" name="q1" value="初めて受ける">　初めて受ける　<input type="radio" name="q1" value="過去に受けたことがある"> 過去に受けたことがある'
+        '性別：　<input type="radio" input type="radio" name="gender" value="男性"> 男性　<input type="radio" name="gender" value="女性"> 女性　<input type="radio" name="gender" value="その他"> その他 <br><br>' +
+        'IATテストについて　：　<input type="radio" input type="radio" name="IAT" value="初めて受ける">　初めて受ける　<input type="radio" name="IAT" value="過去に受けたことがある"> 過去に受けたことがある'
 };
 
 var welcome_block = {
