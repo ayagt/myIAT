@@ -32,14 +32,14 @@ var survey_block ={
 var welcome_block = {
   type: 'html-keyboard-response',
   stimulus: 'こんにちは。星野研究室マーケ班の後藤彩乃と申します。<p>'+
-  '今回はIATテストというテストを2回受けていただきます。所要時間は15分です。<br> IATテストでは画像や言葉のカテゴリ分けを行うことで、あなたのジェンダーに対する潜在的意識を測ります。' +
+  '今回はIATテストというテストを2回受けていただきます。所要時間は15分です。これ以降は戻ることができませんので、ご注意ください。<br> このIATテストでは画像や言葉のカテゴリ分けを行うことで、あなたのジェンダーに対する潜在的意識を測ります。' +
   '</p><p>進むにはスペースキーを押してください。</p>',
   post_trial_gap: 1500
 };
 
 var category_block = {
   type: 'html-keyboard-response',
-  stimulus: '<p>パソコンの"E"と"I”キーを使って、 ' + '次の画像や言葉をできる限り早くカテゴリ分けしてください。 ' +
+  stimulus: '<p>パソコンの"E"と"I”キーを使って、 ' + '次の画像や言葉をできる限り早く以下の４つにカテゴリ分けしてください。 ' +
   'カテゴリは以下の４つのグループに分かれます。:<br><br>' +
   '<strong>女性</strong>:<br>' + 'はなこ, あやか, まりこ, りか, みさき, ' +
   'ゆうな, しおり, りさ<br><br>' + '<strong>男性</strong>:<br>' + 'ゆうすけ, ' +
@@ -412,7 +412,7 @@ var instructions_block7 = {
     stimulus: "<div style='position: absolute; top: 18%; left: 20%'>以下の時はEを押す:<br>" + "<strong>女性</strong><br>" + "or<br>" +
     "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" +
     "<strong>レディースセット</strong></div>" +
-    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これは前回のパートと同様のテストです。<br>" +
+    "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これでpart 1最後のテストです！これも前回のパートと同様のテストです。<br>" +
     "Use <strong>E</strong> for 女性 and for レディースセット以外 People<br>" +
     "Use <strong>I</strong> for 男性 and for レディースセット<br>" +
     "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" +
@@ -930,11 +930,11 @@ var trial_block_2_7 = {
 
       var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
 
-      return "<p>これでパート2のテストが終了です。 お疲れ様でした。<br> <br> パート２のあなたの結果は以下の通りです。</p>"+
+      return "<p>これでパート2のテストが終了です。 お時間を頂きありがとうございました。<br> <br> パート２のあなたの結果は以下の通りです。</p>"+
         "<p>健康的/レディースセット以外 と 不健康/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
         "<p>健康的/レディースセット と 不健康/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
         "<p>これよりあなたのDスコア（このテストの結果で表示される指標）は <strong>"+d.toFixed(2)+"</strong></p>です。"+
-        "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。<br><br>ご協力誠にありがとうございました。</p>"
+        "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。<br><br>この度はご協力頂き、誠にありがとうございました。</p>"
     }
   };
   var timeline = [];
