@@ -860,7 +860,7 @@ var trial_block_2_4 = {
     "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" +
     "<strong>レディースセット</strong></div>" +
     "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これは前回のパートと同様のテストです。<br>" +
-    " 健康的 またはレディースセット以外の時は<strong>E</strong> キーを押してください。<br>" +
+    "健康的 またはレディースセット以外の時は<strong>E</strong> キーを押してください。<br>" +
     "不健康な または レディースセットの時は<strong>I</strong> キーを押してください。<br>" +
     "どの画像や言葉もいずれか一つのカテゴリにしか分類されません.<br><br>" +
     "もし間違えてしまったら、赤いXが表示されます。<br> " +
@@ -922,7 +922,6 @@ var trial_block_2_7 = {
      } else {
          iat_types = ("healhy-ladies set", "unhealthy-non ladies set")
      }
-
       var bad_old = jsPsych.data.get().filter({iat_type: iat_types[0]}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
       var bad_young = jsPsych.data.get().filter({iat_type: iat_types[1]}).filterCustom(function(x) { return x.rt < 10000 });
@@ -1000,9 +999,9 @@ var trial_block_2_7 = {
     timeline: timeline,
     on_finish: function() {
         // var responses = jsPsych.data.get().filter({trial_type: 'survey_html_form'})["response"];
+        jsPsych.data.displayData();
         responses = jsPsych.data.get().filter({"trial_type": "survey-html-form"}).values()[0]["responses"]
         responses = JSON.parse(responses);
-        jsPsych.data.displayData();
         responses["d_score_first"] = getDScore(true);
         responses["d_score_second"] = getDScore(false);
         console.log(responses)
