@@ -27,7 +27,7 @@ var survey_block ={
     preamble: '<p> 以下の情報をお願いします <b></b> </p>',
     html: '<p> 年齢：  <input name="age" type="text" /> 歳 <br><br>'+
         '性別：　<input type="radio" input type="radio" name="gender" value="男性"> 男性　<input type="radio" name="gender" value="女性"> 女性　<input type="radio" name="gender" value="その他"> その他 <br><br>' +
-        'IATテストについて　：　<input type="radio" input type="radio" name="IAT" value="初めて受ける">　初めて受ける　<input type="radio" name="IAT" value="過去に受けたことがある"> 過去に受けたことがある'
+        'IATテストについて　：　<input type="radio" input type="radio" name="taken_before" value="初めて受ける">　初めて受ける　<input type="radio" name="taken_before" value="過去に受けたことがある"> 過去に受けたことがある'
 };
 
 var welcome_block = {
@@ -1010,11 +1010,12 @@ var trial_block_2_7 = {
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         var data = JSON.stringify(
-            { "gender": "gender",
-              "age": "age",
-              "tookTestPreviously": "true",
-              "d_score_first": "d_score",
-              "d_score_second": ""
+            {
+              "gender": responses["gender"],
+              "age": responses["age"],
+              "taken_before": responses["taken_before"],
+              "first_d_score": responses["d_score_first"],
+              "second_d_score": responses["d_score_second"]
             }
         );
         xhr.send(data);
