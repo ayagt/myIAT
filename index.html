@@ -415,8 +415,8 @@ var instructions_block7 = {
     "<strong>レディースセット以外</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>以下の時はIを押す:<br>" + "<strong>男性</strong><br>" + "or<br>" +
     "<strong>レディースセット</strong></div>" +
     "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>これでpart 1最後のテストです！これも前回のパートと同様のテストです。<br>" +
-    "Use <strong>E</strong> for 女性 and for レディースセット以外 People<br>" +
-    "Use <strong>I</strong> for 男性 and for レディースセット<br>" +
+    " 女性またはレディースセット以外の時は<strong>E</strong>キーを押してください。<br>" +
+    "男性 または レディースセットの時は<strong>I</strong> キーを押してください。<br>" +
     "どの画像や言葉もいずれか一つのカテゴリにしか分類されません。<br><br>" +
     "もし間違えてしまったら, 赤いXが表示されます。<br> " +
     "【できる限り正確に、かつ素早くカテゴリ分けをおこなってください。】<br><br> " +
@@ -495,14 +495,14 @@ var debrief_block = {
       return "<p>これでパート１終了です。 ご協力ありがとうございました。パート１のあなたの結果は以下の通りです。</p>"+
         "<p>女性/レディースセット以外 と 男性/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
         "<p>女性/レディースセット と 男性/レディースセット以外のカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_old)+"ms</strong> でした。</p>"+
-        "<p>これよりあなたのDスコア（このテストの結果で表示される指標）は <strong>"+d.toFixed(2)+"</strong></p>です。"+
+        "<p>これよりあなたのDスコア（このテストの結果で表示される指標）は <strong>"+d.toFixed(2)+"</strong>です。"+
         "<p>参考までに、IATテストでは0.15がslight bias、0.35がmoderate bias,　そして0.35以上が strong biasという指標になっています。</p>"
     }
   };
 
   var welcome_block_2 = {
   type: 'html-keyboard-response',
-  stimulus: '<p>続いて、パート２のテストに移ります。' +
+  stimulus: '<p>続いて、パート２のテストに移ります。<br>' +
   'このテストもパート１同様に、画像や言葉のカテゴリ分けを行います。' +
   '</p><p>テストを始めるにはスペースキーを押してください。</p>',
   post_trial_gap: 1500
