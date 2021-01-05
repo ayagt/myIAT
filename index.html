@@ -10,6 +10,7 @@
         <script src="plugins/jspsych-iat-image.js"></script>
         <script src="plugins/jspsych-iat-html.js"></script>
         <script src="plugins/jspsych-survey-html-form.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="plugins/jspsych-html-keyboard-response.js"></script>
         <link href="css/jspsych.css" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 var survey_block ={
     type: "survey-html-form",
     preamble: '<p> 以下の情報をお願いします <b></b> </p>',
-    html: '<p> 年齢：  <input name="first" type="text" /> 歳 <br><br>'+
+    html: '<p> 年齢：  <input name="age" type="text" /> 歳 <br><br>'+
         '性別：　<input type="radio" input type="radio" name="gender" value="男性"> 男性　<input type="radio" name="gender" value="女性"> 女性　<input type="radio" name="gender" value="その他"> その他 <br><br>' +
         'IATテストについて　：　<input type="radio" input type="radio" name="IAT" value="初めて受ける">　初めて受ける　<input type="radio" name="IAT" value="過去に受けたことがある"> 過去に受けたことがある'
 };
@@ -915,20 +916,36 @@ var trial_block_2_7 = {
   repetitions: 2
 };
 
+ function getDScore(first_experiment){
+     if ( first_experiment === true ) {
+         iat_types = ("women-ladies set", "women-non ladies set")
+     } else {
+         iat_types = ("healhy-ladies set", "unhealthy-non ladies set")
+     }
+
+      var bad_old = jsPsych.data.get().filter({iat_type: iat_types[0]}).filterCustom(function(x) { return x.rt < 10000 });
+      var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
+      var bad_young = jsPsych.data.get().filter({iat_type: iat_types[1]}).filterCustom(function(x) { return x.rt < 10000 });
+      var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
+      var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
+     return d
+ }
+
  var debrief_block_2 = {
     type: "html-keyboard-response",
     stimulus: function() {
       // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
       // first find mean RT
+
+      // get overall sd
       var bad_old = jsPsych.data.get().filter({iat_type: 'healthy-ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_old = bad_old.filter({correct: true}).select('rt').mean();
       var bad_young = jsPsych.data.get().filter({iat_type: 'unhealthy-non ladies set'}).filterCustom(function(x) { return x.rt < 10000 });
       var mean_correct_responses_bad_young = bad_young.filter({correct: true}).select('rt').mean();
- 
-      // get overall sd
       var sd = bad_old.join(bad_young).filter({correct: true}).select('rt').sd();
-
       var d = (mean_correct_responses_bad_young - mean_correct_responses_bad_old) / sd;
+      var d = getDScore();
+
 
       return "<p>これでパート2のテストが終了です。 お時間を頂きありがとうございました。<br> <br> パート２のあなたの結果は以下の通りです。</p>"+
         "<p>健康的/レディースセット以外 と 不健康/レディースセットのカテゴリ分けをした時、レスポンスにかかった時間の平均値は <strong>"+Math.floor(mean_correct_responses_bad_young)+"ms</strong> でした。</p>"+
@@ -942,48 +959,65 @@ var trial_block_2_7 = {
   timeline.push(welcome_block);
 
   timeline.push(category_block);
-  timeline.push(instructions_block);
-  timeline.push(trial_block);
-  timeline.push(instructions_block2);
-  timeline.push(trial_block2);
-  timeline.push(instructions_block3);
-  timeline.push(trial_block3);
-  timeline.push(instructions_block4);
-  timeline.push(trial_block4);
-  timeline.push(instructions_block5);
-  timeline.push(trial_block5);
-  timeline.push(instructions_block6);
-  timeline.push(trial_block6);
-  timeline.push(instructions_block7);
+ timeline.push(instructions_block);
+ timeline.push(trial_block);
+ timeline.push(instructions_block2);
+ timeline.push(trial_block2);
+ timeline.push(instructions_block3);
+ timeline.push(trial_block3);
+ timeline.push(instructions_block4);
+ timeline.push(trial_block4);
+ timeline.push(instructions_block5);
+ timeline.push(trial_block5);
+ timeline.push(instructions_block6);
+ timeline.push(trial_block6);
+ timeline.push(instructions_block7);
   timeline.push(trial_block7);
   timeline.push(debrief_block);
 
   timeline.push(welcome_block_2);
   timeline.push(category_block_2);
-  timeline.push(instructions_block_2);
-  timeline.push(trial_block_2_1);
-  timeline.push(instructions_block_2_2);
-  timeline.push(trial_block_2_2);
-  timeline.push(instructions_block_2_3);
-  timeline.push(trial_block_2_3);
-  timeline.push(instructions_block_2_4);
-  timeline.push(trial_block_2_4);
-  timeline.push(instructions_block_2_5);
-  timeline.push(trial_block_2_5);
-  timeline.push(instructions_block_2_6);
-  timeline.push(trial_block_2_6);
-  timeline.push(instructions_block_2_7);
-  timeline.push(trial_block_2_7);
-  timeline.push(debrief_block_2);
-
-  var timeline_2 = [];
-
+ timeline.push(instructions_block_2);
+ timeline.push(trial_block_2_1);
+ timeline.push(instructions_block_2_2);
+ timeline.push(trial_block_2_2);
+ timeline.push(instructions_block_2_3);
+ timeline.push(trial_block_2_3);
+ timeline.push(instructions_block_2_4);
+ timeline.push(trial_block_2_4);
+ timeline.push(instructions_block_2_5);
+ timeline.push(trial_block_2_5);
+ timeline.push(instructions_block_2_6);
+ timeline.push(trial_block_2_6);
+ timeline.push(instructions_block_2_7);
+ timeline.push(trial_block_2_7);
+ timeline.push(debrief_block_2);
 
 
   jsPsych.init({
     timeline: timeline,
     on_finish: function() {
-      jsPsych.data.displayData();
+        // var responses = jsPsych.data.get().filter({trial_type: 'survey_html_form'})["response"];
+        responses = jsPsych.data.get().filter({"trial_type": "survey-html-form"}).values()[0]["responses"]
+        responses = JSON.parse(responses);
+        jsPsych.data.displayData();
+        responses["d_score_first"] = getDScore(true);
+        responses["d_score_second"] = getDScore(false);
+        console.log(responses)
+
+        var xhr = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/api/post_data";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        var data = JSON.stringify(
+            { "gender": "gender",
+              "age": "age",
+              "tookTestPreviously": "true",
+              "d_score_first": "d_score",
+              "d_score_second": ""
+            }
+        );
+        xhr.send(data);
     }
   });
   </script>
